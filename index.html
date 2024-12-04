@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<link rel="manifest" href="manifest.json" />
@@ -11,5 +10,15 @@
 		<div id="transition-layer"></div>
 
 		<script type="module" src="main.bundle.js" defer></script>
+
+		<script>
+			// Add the beforeunload event to prevent tab/window closing
+			window.addEventListener('beforeunload', function (event) {
+				// Standard way to show a confirmation message
+				const message = "Are you sure you want to leave this page? Any unsaved progress might be lost.";
+				event.returnValue = message;  // For most modern browsers
+				return message;  // For older browsers (some still use this)
+			});
+		</script>
 	</body>
 </html>
